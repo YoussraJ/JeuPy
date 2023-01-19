@@ -44,7 +44,7 @@ class Fenetre:
 
     # dessiner est une fonction qui sert à dessiner 42 carré dans lequels on dessine des cercles (vide) qui vont contenir les pions 
     def dessiner():
-       
+        pygame.display.set_caption("jeu puissance 4")
         for c in range(m.nb_Colonne):
             for l in range(m.nb_Ligne):
                 #dessiner un rectangle BEIGE . rect(surface,color,pos_x,pos_y,width,height)
@@ -52,8 +52,8 @@ class Fenetre:
                 #dessiner les cercles :  circle(surface,color,pos,radius,width)
                 pygame.draw.circle(Fenetre.window,BLAN,((c+0.5)*Fenetre.taille_pion,(l+1.5)*Fenetre.taille_pion),Fenetre.taille_pion//2-5)
     
-    # colorer_pion est une fonction qui sert à dessiner un cercle dont la couleur est la position du centre entrés comme paramètres 
-    def colorer_pion(couleur,x,y):
+    # dessiner_pion est une fonction qui sert à dessiner un cercle dont la couleur est la position du centre entrés comme paramètres 
+    def dessiner_pion(couleur,x,y):
         pygame.draw.circle(Fenetre.window,couleur,(x,y),Fenetre.taille_pion//2-5)
         pygame.display.update()
 
@@ -183,9 +183,9 @@ class Jouer:
 
                     posx= event.pos[0] #récuperer l'abscisse de la position de la souris  
                     if tour == 0: # indique le tour du joueur1 
-                       Fenetre.colorer_pion(self.Joueur1.couleur,posx,Fenetre.taille_pion//2) # on dessine une boule centrée à la position de la souris coloré par le meme couleur des pions du joueur 1 
+                       Fenetre.dessiner_pion(self.Joueur1.couleur,posx,Fenetre.taille_pion//2) # on dessine une boule centrée à la position de la souris coloré par le meme couleur des pions du joueur 1 
                     else: # indique le tour du joueur2
-                       Fenetre.colorer_pion(self.Joueur2.couleur,posx,Fenetre.taille_pion//2) ## on dessine une boule centrée à la position de la souris coloré par le meme couleur des pions du joueur 2
+                       Fenetre.dessiner_pion(self.Joueur2.couleur,posx,Fenetre.taille_pion//2) ## on dessine une boule centrée à la position de la souris coloré par le meme couleur des pions du joueur 2
                 if event.type == pygame.MOUSEBUTTONDOWN:  #!!!! on doit ajouter une variable tour pour faire une condition quand il ajoute 1 et quand 
                                                              #!!!! il ajoute 2 puisque la fonction qui détecte 'click' est la meme pour les deux joueurs
 
@@ -198,7 +198,7 @@ class Jouer:
                         if tour == 0: # tourne du joueur1
                             self.modifier(ligne,col,self.Joueur1.symbol) # on modifie la case exacte
                             print(m.matrice)
-                            Fenetre.colorer_pion(self.Joueur1.couleur,(col+0.5)*Fenetre.taille_pion,(ligne+1.5)*Fenetre.taille_pion)#on dessine un cercle coloré par le couleur des pions du joueur1
+                            Fenetre.dessiner_pion(self.Joueur1.couleur,(col+0.5)*Fenetre.taille_pion,(ligne+1.5)*Fenetre.taille_pion)#on dessine un cercle coloré par le couleur des pions du joueur1
                             tour +=1
 
                             # on vérifie si le joueur gagne 
@@ -215,7 +215,7 @@ class Jouer:
                         else:  # de meme si tour!=1 juste on remplace le joueur1 par le joueur2
                             self.modifier(ligne,col,self.Joueur2.symbol)
                             print(m.matrice)
-                            Fenetre.colorer_pion(self.Joueur2.couleur,(col+0.5)*Fenetre.taille_pion,(ligne+1.5)*Fenetre.taille_pion)
+                            Fenetre.dessiner_pion(self.Joueur2.couleur,(col+0.5)*Fenetre.taille_pion,(ligne+1.5)*Fenetre.taille_pion)
                             tour +=1
                             tour = tour % 2
                             if(self.verifier_matrice()==1): 
