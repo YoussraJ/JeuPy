@@ -70,9 +70,9 @@ class Fenetre:
         pygame.time.wait(6000)
 
     #cette fonction permet de lancer un son (music) en utilisant le module pygame.mixer.music     
-    def music0(son):
+    def music0(son,n):
         pygame.mixer.music.load(son) # chargement du son
-        pygame.mixer.music.play(0) # lancement du son
+        pygame.mixer.music.play(n) # lancement du son
     
 
 ###################class Joueur ####################
@@ -89,7 +89,7 @@ class Joueur:
     #cette methode affiche un message si le joueur courant est gagnant
     def gagnant(self): 
         self.est_gagnant=True
-        Fenetre.music0('win.wav')
+        Fenetre.music0('win.wav',0)
         Fenetre.affiche_message("Joueur "+str(self.symbol)+" est un gagnant !!! ",self.couleur)
     
     #cette methode consiste à diminuer le nombre des pions du joueur courant chaque fois qu'il pose un dans la matrice  Dans ce cas on ne va pas l'utiliser cela peut etre si on ajouter d'autres fonctions à ce jeux
@@ -170,7 +170,7 @@ class Jouer:
     def allons_y(self):
         Fenetre.dessiner()
         #lancement de la musique 
-        Fenetre.music0('background.wav')
+        Fenetre.music0('background.wav',-1)
         tour = 0
         # les instruction se repètent tant qu'il y a des case valent 0 et aucun des joueurs gagne
         while(self.verifier_matrice()==0): 
